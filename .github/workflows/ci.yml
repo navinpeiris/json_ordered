@@ -1,0 +1,44 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build & Test
+
+    runs-on: ubuntu-latest
+
+    env:
+      MIX_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Erlang & Elixir
+        id: beam
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.18.1"
+          otp-version: "27.2"
+
+      - name: Restore mix cache
+        uses: buildjet/cache@v4
+        with:
+          path: deps
+          key: mix-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+
+      - name: Restore build cache
+        uses: buildjet/cache@v4
+        with:
+          path: _build
+          key: build-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+
+      - name: Install Mix Dependencies
+        run: mix deps.get
+
+      - name: Compile Mix Dependencies
+        run: mix deps.compile
+
+      - name: Run Verification Tasks
+        run: mix ci
