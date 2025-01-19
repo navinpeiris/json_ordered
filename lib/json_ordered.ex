@@ -36,8 +36,11 @@ defmodule JSONOrdered do
   ```
   """
 
+  @type t :: %__MODULE__{data: Keyword.t()}
+
   defstruct [:data]
 
+  @spec new(Keyword.t()) :: t()
   def new(data) when is_list(data), do: %JSONOrdered{data: data}
 end
 
