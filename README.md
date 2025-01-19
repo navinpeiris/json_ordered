@@ -1,5 +1,10 @@
 # JSONOrdered
 
+[![CI](https://github.com/navinpeiris/json_ordered/actions/workflows/ci.yml/badge.svg)](https://github.com/navinpeiris/json_ordered/actions/workflows/ci.yml)
+[![Hex version](https://img.shields.io/hexpm/v/json_ordered.svg "Hex version")](https://hex.pm/packages/json_ordered)
+[![Hex downloads](https://img.shields.io/hexpm/dt/json_ordered.svg "Hex downloads")](https://hex.pm/packages/json_ordered)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+
 A simple struct and encoder for the Elixir 1.18+ [JSON](https://hexdocs.pm/elixir/JSON.html) module that allows you to encode JSON data with the keys in the specified order.
 
 This is handy for external facing API's where the order of keys makes it easier to reason about the response content.
