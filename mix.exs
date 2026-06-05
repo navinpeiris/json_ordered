@@ -1,7 +1,7 @@
 defmodule JSONOrdered.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @source_url "https://github.com/navinpeiris/json_ordered"
 
   def project do
@@ -51,7 +51,7 @@ defmodule JSONOrdered.MixProject do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "CHANGELOG*", "LICENSE*"],
       maintainers: ["Navin Peiris"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
@@ -64,7 +64,8 @@ defmodule JSONOrdered.MixProject do
       source_url: @source_url,
       source_ref: "v#{@version}",
       extras: [
-        "README.md"
+        "README.md",
+        "CHANGELOG.md"
       ]
     ]
   end

@@ -14,7 +14,7 @@ This is handy for external facing API's where the order of keys makes it easier 
 ```elixir
 def deps do
   [
-    {:json_ordered, "~> 0.1.0"}
+    {:json_ordered, "~> 0.2.0"}
   ]
 end
 ```
