@@ -19,8 +19,8 @@ jobs:
         id: beam
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: "1.18.1"
-          otp-version: "27.2"
+          elixir-version: "1.20"
+          otp-version: "29"
 
       - name: Restore mix cache
         uses: buildjet/cache@v4

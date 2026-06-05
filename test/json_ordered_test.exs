@@ -24,4 +24,8 @@ defmodule JSONOrderedTest do
            |> JSON.encode!() ==
              ~S({"one":1,"two":2,"three":3,"another":{"ten":10,"eleven":11},"str":"oh hello there","map":{"a":1},"list":[1,2,3]})
   end
+
+  test "escapes keys that require JSON escaping" do
+    assert JSONOrdered.new([{:"a\"b", 1}]) |> JSON.encode!() == ~S({"a\"b":1})
+  end
 end

@@ -21,8 +21,13 @@ defmodule JSONOrdered.MixProject do
       docs: docs(),
       test_coverage: [
         summary: [threshold: 100]
-      ],
-      preferred_cli_env: [ci: :test]
+      ]
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [ci: :test]
     ]
   end
 

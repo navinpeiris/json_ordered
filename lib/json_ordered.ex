@@ -48,13 +48,13 @@ defimpl JSON.Encoder, for: JSONOrdered do
   def encode(%{data: []}, _encoder), do: "{}"
 
   def encode(%{data: data}, encoder) do
-    # Implementation inspired by the the struct encoding logic in JSON.Encoder
-    # See: https://github.com/elixir-lang/elixir/blob/v1.18.1/lib/elixir/lib/json.ex#L60
+    # Hand-rolled struct encoding to preserve key order. Keys are encoded with the
+    # public JSON.encode!/1; values use the protocol's recursive encoder.
 
     {io, _} =
       data
       |> Enum.flat_map_reduce(?{, fn {field, value}, prefix ->
-        key = IO.iodata_to_binary([prefix, :elixir_json.encode_binary(Atom.to_string(field)), ?:])
+        key = IO.iodata_to_binary([prefix, JSON.encode!(Atom.to_string(field)), ?:])
         {[key, encoder.(value, encoder)], ?,}
       end)
 
